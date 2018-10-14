@@ -3,3 +3,6 @@ src/TwistedGames/bin/*
 src/TwistedGames/obj/*
 src/TwistedGames.Core/bin/*
 src/TwistedGames.Core/obj/*
+*.user
+tests/TwistedGames.Core.UnitTest/bin/*
+tests/TwistedGames.Core.UnitTest/obj/*
