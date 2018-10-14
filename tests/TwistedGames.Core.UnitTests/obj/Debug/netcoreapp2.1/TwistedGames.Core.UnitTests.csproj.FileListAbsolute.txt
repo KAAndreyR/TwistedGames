@@ -1,0 +1,14 @@
+D:\GitHub\TwistedGames\tests\TwistedGames.Core.UnitTests\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+D:\GitHub\TwistedGames\tests\TwistedGames.Core.UnitTests\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+D:\GitHub\TwistedGames\tests\TwistedGames.Core.UnitTests\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
+D:\GitHub\TwistedGames\tests\TwistedGames.Core.UnitTests\bin\Debug\netcoreapp2.1\TwistedGames.Core.UnitTests.deps.json
+D:\GitHub\TwistedGames\tests\TwistedGames.Core.UnitTests\bin\Debug\netcoreapp2.1\TwistedGames.Core.UnitTests.runtimeconfig.json
+D:\GitHub\TwistedGames\tests\TwistedGames.Core.UnitTests\bin\Debug\netcoreapp2.1\TwistedGames.Core.UnitTests.runtimeconfig.dev.json
+D:\GitHub\TwistedGames\tests\TwistedGames.Core.UnitTests\bin\Debug\netcoreapp2.1\TwistedGames.Core.UnitTests.dll
+D:\GitHub\TwistedGames\tests\TwistedGames.Core.UnitTests\bin\Debug\netcoreapp2.1\TwistedGames.Core.UnitTests.pdb
+D:\GitHub\TwistedGames\tests\TwistedGames.Core.UnitTests\obj\Debug\netcoreapp2.1\TwistedGames.Core.UnitTests.csprojAssemblyReference.cache
+D:\GitHub\TwistedGames\tests\TwistedGames.Core.UnitTests\obj\Debug\netcoreapp2.1\TwistedGames.Core.UnitTests.csproj.CoreCompileInputs.cache
+D:\GitHub\TwistedGames\tests\TwistedGames.Core.UnitTests\obj\Debug\netcoreapp2.1\TwistedGames.Core.UnitTests.AssemblyInfoInputs.cache
+D:\GitHub\TwistedGames\tests\TwistedGames.Core.UnitTests\obj\Debug\netcoreapp2.1\TwistedGames.Core.UnitTests.AssemblyInfo.cs
+D:\GitHub\TwistedGames\tests\TwistedGames.Core.UnitTests\obj\Debug\netcoreapp2.1\TwistedGames.Core.UnitTests.dll
+D:\GitHub\TwistedGames\tests\TwistedGames.Core.UnitTests\obj\Debug\netcoreapp2.1\TwistedGames.Core.UnitTests.pdb
