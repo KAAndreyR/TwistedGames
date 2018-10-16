@@ -23,7 +23,7 @@ namespace TwistedGames.Core.SingleGames.Snake
             Walls = new List<BitArray>(gameSize.Height);
             for (int i = 0; i < gameSize.Height; i++)
             {
-                Walls[i] = new BitArray(gameSize.Width);
+                Walls.Add(new BitArray(gameSize.Width));
             }
 
             Bonus = GenerateBonus();
@@ -56,6 +56,8 @@ namespace TwistedGames.Core.SingleGames.Snake
                 return SnakeFieldState.Bonus;
             if (Walls[point.Y][point.X])
                 return SnakeFieldState.Wall;
+            if (SnakeState.SnakePoints[0].Equals(point))
+                return SnakeFieldState.SnakeHead;
             if (SnakeState.SnakePoints.Contains(point))
                 return SnakeFieldState.Snake;
             return SnakeFieldState.Empty;

@@ -1,8 +1,33 @@
-﻿@page
+﻿@page "{handler?}"
 @model TwistedGames.Pages.SingleGames.SnakeModel
 @{
     ViewData["Title"] = "Snake";
 }
 
-<h2>Snake</h2>
+<h2>Single-player Snake</h2>
+
+<div hidden id="GameId">@Model.GameId</div>
+
+@Html.AntiForgeryToken()
+
+<div class="row">
+    <div class="col-lg-10 col-md-9 col-sm-12 text-center" id="GameField">
+        <partial name="Shared/GameField/_SnakeField" model="Model.GameRepresentation" />
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-4 col-sm-offset-4 col-md-offset-0 text-center">
+        <partial name="Shared/_Joystick" />
+    </div>
+</div>
+
+@section Styles {
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/snake.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/snake.css" asp-append-version="true" />
+    </environment>
+}
+@section Scripts {
+    <script src="~/js/snake.js" asp-append-version="true"></script>
+}
 

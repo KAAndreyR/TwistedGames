@@ -3,6 +3,6 @@
     public interface IGameManager<out TGameRepresentation>
     {
         TGameRepresentation DoAction(ActionType action);
-        TGameRepresentation GetGameActualState();
+        TGameRepresentation GetActualGameState();
     }
 }

@@ -11,7 +11,7 @@ namespace TwistedGames.Core.Games.Snake
             switch (action)
             {
                 case ActionType.Action:
-                    snake.Revert();
+                    snake.Revert(manager.GameSize);
                     break;
                 case ActionType.Up:
                     snake.SetDirection(Direction.Up);
@@ -63,10 +63,10 @@ namespace TwistedGames.Core.Games.Snake
 
         public GamePoint CorrectNextHeadPosition(GamePoint point, GameSize gameSize)
         {
-            if (point.X < 0) point = new GamePoint(0, point.Y);
-            if (point.Y < 0) point = new GamePoint(point.X, 0);
-            if (point.X >= gameSize.Width) point = new GamePoint(gameSize.Width - 1, point.Y);
-            if (point.Y >= gameSize.Height) point = new GamePoint(point.X, gameSize.Height - 1);
+            if (point.X < 0) point = new GamePoint(gameSize.Width + point.X, point.Y);
+            if (point.Y < 0) point = new GamePoint(point.X, gameSize.Height + point.Y);
+            if (point.X >= gameSize.Width) point = new GamePoint(point.X % gameSize.Width, point.Y);
+            if (point.Y >= gameSize.Height) point = new GamePoint(point.X, point.Y % gameSize.Height);
             return point;
         }
 

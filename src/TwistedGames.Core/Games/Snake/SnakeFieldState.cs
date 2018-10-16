@@ -5,6 +5,7 @@
         Empty,
         Bonus,
         Wall,
-        Snake
+        Snake,
+        SnakeHead,
     }
 }

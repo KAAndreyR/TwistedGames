@@ -1,6 +1,4 @@
-﻿using TwistedGames.Core.Games.Snake;
-
-namespace TwistedGames.Core.SingleGames.Snake
+﻿namespace TwistedGames.Core.Games.Snake
 {
     public class SnakeGameRepresentation
     {

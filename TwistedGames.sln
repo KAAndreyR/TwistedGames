@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwistedGames.Core", "src\Tw
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwistedGames", "src\TwistedGames\TwistedGames.csproj", "{FEF82E7E-B8CA-4FB3-8A9A-0A3F48C5B906}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwistedGames.Core.UnitTests", "tests\TwistedGames.Core.UnitTests\TwistedGames.Core.UnitTests.csproj", "{7A19396F-6C6F-4954-AE54-1637D6931501}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwistedGames.Core.UnitTests", "tests\TwistedGames.Core.UnitTests\TwistedGames.Core.UnitTests.csproj", "{7A19396F-6C6F-4954-AE54-1637D6931501}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

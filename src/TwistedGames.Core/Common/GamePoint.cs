@@ -36,5 +36,26 @@ namespace TwistedGames.Core.Common
                 return (X * 397) ^ Y;
             }
         }
+
+        public Direction DirectionTo(GamePoint other, GameSize gameSize)
+        {
+            var rightDiff = (other.X - X + gameSize.Width) % gameSize.Width;
+            var leftDiff = (X - other.X + gameSize.Width) % gameSize.Width;
+            var upDiff = (other.Y - Y + gameSize.Height) % gameSize.Height;
+            var downDiff = (Y - other.Y + gameSize.Height) % gameSize.Height;
+            var xDiff = Math.Min(rightDiff, leftDiff);
+            var yDiff = Math.Min(upDiff, downDiff);
+            if (xDiff > yDiff)
+            {
+                return rightDiff < leftDiff 
+                    ? Direction.Right 
+                    : Direction.Left;
+            }
+            return upDiff < downDiff
+                ? Direction.Up
+                : Direction.Down;
+        }
+
+        public override string ToString() => $"({X},{Y})";
     }
 }

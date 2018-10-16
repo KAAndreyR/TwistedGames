@@ -1,0 +1,39 @@
+﻿@using TwistedGames.Core.Games.Snake
+@model SnakeGameRepresentation
+<div class="row">
+    <table>
+        @for (int rowIndex = Model.Field.GetLength(0) - 1; rowIndex >= 0; rowIndex--)
+        {
+            <tr>
+                @for (int columnIndex = 0; columnIndex < Model.Field.GetLength(1); columnIndex++)
+                {
+                    switch (Model.Field[rowIndex, columnIndex])
+                    {
+                        case SnakeFieldState.Empty:
+                            <td class="field-cell empty-cell"></td>
+                            break;
+                        case SnakeFieldState.Bonus:
+                            <td class="field-cell bonus-cell"></td>
+                            break;
+                        case SnakeFieldState.Wall:
+                            <td class="field-cell wall-cell"></td>
+                            break;
+                        case SnakeFieldState.Snake:
+                            <td class="field-cell snake-cell"></td>
+                            break;
+                        case SnakeFieldState.SnakeHead:
+                            <td class="field-cell snake-head-cell"></td>
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+                }
+            </tr>
+        }
+    </table>
+</div>
+<div class="h4">@Model.Score</div>
+@if (Model.IsStopped)
+{
+    <div class="h3">Game is stopped</div>
+}

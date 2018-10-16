@@ -8,8 +8,6 @@ namespace TwistedGames.Core.Common
         private DateTime StartTime { get; set; }
         private DateTime LastGameUpdateTime { get; set; }
 
-        public DiscreteCyclesCounter() : this(TimeSpan.FromSeconds(1)) { }
-
         public DiscreteCyclesCounter(TimeSpan cycleDuration)
         {
             CycleDuration = cycleDuration.Ticks;

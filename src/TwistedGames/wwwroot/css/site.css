@@ -11,3 +11,14 @@ body {
     padding-left: 15px;
     padding-right: 15px;
 }
+
+.top_offset {
+    padding-top: 20px;
+}
+
+.field-cell {
+    width: 15px;
+    height: 15px;
+    border: 1px solid lightgray;
+}
+

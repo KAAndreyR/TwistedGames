@@ -1,4 +1,5 @@
-﻿using TwistedGames.Core.Common;
+﻿using System;
+using TwistedGames.Core.Common;
 using TwistedGames.Core.Games;
 using TwistedGames.Core.Games.Snake;
 
@@ -8,8 +9,8 @@ namespace TwistedGames.Core.SingleGames.Snake
     {
         public GameSize GameSize { get; }
         private const int InitialSnakeLength = 4;
-        private SnakeGameState SnakeGameState { get; set;  }
-        private DiscreteCyclesCounter Counter { get; } = new DiscreteCyclesCounter();
+        private SnakeGameState SnakeGameState { get; set; }
+        private DiscreteCyclesCounter Counter { get; } = new DiscreteCyclesCounter(TimeSpan.FromSeconds(0.3));
         private SnakeGame Game { get; } = new SnakeGame();
         private object Locker { get; } = new object();
 
@@ -47,17 +48,20 @@ namespace TwistedGames.Core.SingleGames.Snake
                     Game.DoAction(this, action);
                 }
 
-                return GetGameActualState();
+                return GetActualGameState();
             }
         }
 
-        public SnakeGameRepresentation GetGameActualState()
+        public SnakeGameRepresentation GetActualGameState()
         {
             lock (Locker)
             {
-                for (int i = 0; i < Counter.GetGameTicksCount(); i++)
+                if (!SnakeGameState.IsStopped)
                 {
-                    Game.OnTick(this);
+                    for (int i = 0; i < Counter.GetGameTicksCount(); i++)
+                    {
+                        Game.OnTick(this);
+                    }
                 }
 
                 return SnakeGameState.GetRepresentation();

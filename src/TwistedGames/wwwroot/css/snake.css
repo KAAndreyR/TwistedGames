@@ -1,0 +1,19 @@
+.bonus-cell {
+    background-color: orange;
+}
+
+.wall-cell {
+    background-color: black;
+}
+
+.snake-cell {
+    background-color: green;
+}
+
+.snake-head-cell {
+    background-color: darkgreen;
+}
+
+.empty-cell{
+    background-color: white;
+}
