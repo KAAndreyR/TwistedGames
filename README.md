@@ -2,6 +2,9 @@
 
 Twisted games is a game project for fun and practices.
 
+Play:
+https://twistedgames20181018122546.azurewebsites.net/
+
 ## Aims at project start
 
 * Add snake game

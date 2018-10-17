@@ -6,3 +6,4 @@ src/TwistedGames.Core/obj/*
 *.user
 tests/TwistedGames.Core.UnitTests/bin/*
 tests/TwistedGames.Core.UnitTests/obj/*
+*.pubxml
