@@ -57,5 +57,15 @@ namespace TwistedGames.Core.Common
         }
 
         public override string ToString() => $"({X},{Y})";
+
+        public GamePoint CorrectPoint(GameSize gameSize)
+        {
+            var point = this;
+            if (point.X < 0) point = new GamePoint(gameSize.Width + point.X, point.Y);
+            if (point.Y < 0) point = new GamePoint(point.X, gameSize.Height + point.Y);
+            if (point.X >= gameSize.Width) point = new GamePoint(point.X % gameSize.Width, point.Y);
+            if (point.Y >= gameSize.Height) point = new GamePoint(point.X, point.Y % gameSize.Height);
+            return point;
+        }
     }
 }

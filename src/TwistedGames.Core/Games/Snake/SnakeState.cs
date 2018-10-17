@@ -47,13 +47,15 @@ namespace TwistedGames.Core.Games.Snake
             }
         }
 
-        public void SetDirection(Direction direction)
+        public void SetDirection(Direction direction, GameSize gameSize)
         {
-            if (SnakePoints.Count > 1 && !SnakePoints[1].Equals(SnakePoints[0].AddDirection(direction)))
+            if (SnakePoints.Count > 1 && !SnakePoints[1].Equals(GetNextHeadPosition(direction).CorrectPoint(gameSize)))
                 Direction = direction;
         }
 
-        public GamePoint GetNextHeadPosition() => SnakePoints[0].AddDirection(Direction);
+        public GamePoint GetNextHeadPosition() => GetNextHeadPosition(Direction);
+        public GamePoint GetNextHeadPosition(Direction direction) => SnakePoints[0].AddDirection(direction);
+
 
         public void Move(GamePoint nextHeadPosition, bool hasBonus)
         {

@@ -14,16 +14,16 @@ namespace TwistedGames.Core.Games.Snake
                     snake.Revert(manager.GameSize);
                     break;
                 case ActionType.Up:
-                    snake.SetDirection(Direction.Up);
+                    snake.SetDirection(Direction.Up, manager.GameSize);
                     break;
                 case ActionType.Down:
-                    snake.SetDirection(Direction.Down);
+                    snake.SetDirection(Direction.Down, manager.GameSize);
                     break;
                 case ActionType.Right:
-                    snake.SetDirection(Direction.Right);
+                    snake.SetDirection(Direction.Right, manager.GameSize);
                     break;
                 case ActionType.Left:
-                    snake.SetDirection(Direction.Left);
+                    snake.SetDirection(Direction.Left, manager.GameSize);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(action), action, null);
@@ -40,7 +40,7 @@ namespace TwistedGames.Core.Games.Snake
                 manager.OnWallCollision();
                 return;
             }
-            nextHeadPosition = CorrectNextHeadPosition(nextHeadPosition, gameSize);
+            nextHeadPosition = nextHeadPosition.CorrectPoint(gameSize);
             var fieldState = manager.GetFieldState(nextHeadPosition);
 
             switch (fieldState)
@@ -59,15 +59,6 @@ namespace TwistedGames.Core.Games.Snake
                 default:
                     throw new ArgumentOutOfRangeException(nameof(fieldState), fieldState, "Unexpected fieldState");
             }
-        }
-
-        public GamePoint CorrectNextHeadPosition(GamePoint point, GameSize gameSize)
-        {
-            if (point.X < 0) point = new GamePoint(gameSize.Width + point.X, point.Y);
-            if (point.Y < 0) point = new GamePoint(point.X, gameSize.Height + point.Y);
-            if (point.X >= gameSize.Width) point = new GamePoint(point.X % gameSize.Width, point.Y);
-            if (point.Y >= gameSize.Height) point = new GamePoint(point.X, point.Y % gameSize.Height);
-            return point;
         }
 
         public bool CheckBorders(GamePoint point, GameSize gameSize)
