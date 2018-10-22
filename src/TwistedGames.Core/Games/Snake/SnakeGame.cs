@@ -45,14 +45,14 @@ namespace TwistedGames.Core.Games.Snake
 
             switch (fieldState)
             {
-                case SnakeFieldState.Wall:
-                case SnakeFieldState.Snake:
+                case FieldState.Wall:
+                case FieldState.Snake:
                     manager.OnWallCollision();
                     return;
-                case SnakeFieldState.Empty:
+                case FieldState.Empty:
                     snake.Move(nextHeadPosition, false);
                     break;
-                case SnakeFieldState.Bonus:
+                case FieldState.Bonus:
                     snake.Move(nextHeadPosition, true);
                     manager.OnBonusCollision();
                     break;

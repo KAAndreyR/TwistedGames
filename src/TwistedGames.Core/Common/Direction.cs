@@ -1,4 +1,4 @@
-﻿namespace TwistedGames.Core
+﻿namespace TwistedGames.Core.Common
 {
     public enum Direction
     {

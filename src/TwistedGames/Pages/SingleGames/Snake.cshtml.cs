@@ -5,38 +5,40 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using TwistedGames.Core;
 using TwistedGames.Core.Common;
+using TwistedGames.Core.Games;
 using TwistedGames.Core.Games.Snake;
 using TwistedGames.Core.SingleGames.Snake;
+using TwistedGames.Core.Storage;
 
 namespace TwistedGames.Pages.SingleGames
 {
     public class SnakeModel : PageModel
     {
-        //Todo make common games repository with auto clean
-        private static ConcurrentDictionary<Guid, SnakeGameManager> Games { get; }=
-            new ConcurrentDictionary<Guid, SnakeGameManager>();
+        public SnakeGameStorage GameStorage { get; }
+        public SnakeModel(SnakeGameStorage gameStorage)
+        {
+            GameStorage = gameStorage;
+        }
 
         public Guid GameId { get; set; }
-        public SnakeGameRepresentation GameRepresentation { get; set; }
-
-        private static SnakeGameManager CreateSnakeGameManager() => new SnakeGameManager(new GameSize(20, 15));
+        public GameRepresentation GameRepresentation { get; set; }
 
         public void OnGet()
         {
             GameId = Guid.NewGuid();
-            var gameManager = Games[GameId] = CreateSnakeGameManager();
+            var gameManager = GameStorage.GetOrCreateGame(GameId);
             GameRepresentation = gameManager.GetActualGameState();
         }
 
         public JsonResult OnPostRefresh(Guid gameId)
         {
-            var gameManager = Games.GetOrAdd(gameId, _ => CreateSnakeGameManager());
+            var gameManager = GameStorage.GetOrCreateGame(gameId);
             return new JsonResult(gameManager.GetActualGameState());
         }
 
         public JsonResult OnPostAction(Guid gameId, ActionType action)
         {
-            var gameManager = Games.GetOrAdd(gameId, _ => CreateSnakeGameManager());
+            var gameManager = GameStorage.GetOrCreateGame(gameId);
             return new JsonResult(gameManager.DoAction(action));
         }
     }

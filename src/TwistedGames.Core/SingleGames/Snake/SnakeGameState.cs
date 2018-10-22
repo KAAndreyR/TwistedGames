@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TwistedGames.Core.Common;
+using TwistedGames.Core.Games;
 using TwistedGames.Core.Games.Snake;
 
 namespace TwistedGames.Core.SingleGames.Snake
@@ -35,7 +36,7 @@ namespace TwistedGames.Core.SingleGames.Snake
             do
             {
                 newBonus = new GamePoint(Random.Next(GameSize.Width), Random.Next(GameSize.Height));
-            } while (GetFieldState(newBonus) != SnakeFieldState.Empty);
+            } while (GetFieldState(newBonus) != FieldState.Empty);
             return newBonus;
         }
 
@@ -50,27 +51,27 @@ namespace TwistedGames.Core.SingleGames.Snake
             Bonus = GenerateBonus();
         }
 
-        public SnakeFieldState GetFieldState(GamePoint point)
+        public FieldState GetFieldState(GamePoint point)
         {
             if (point.Equals(Bonus))
-                return SnakeFieldState.Bonus;
+                return FieldState.Bonus;
             if (Walls[point.Y][point.X])
-                return SnakeFieldState.Wall;
+                return FieldState.Wall;
             if (SnakeState.SnakePoints[0].Equals(point))
-                return SnakeFieldState.SnakeHead;
+                return FieldState.SnakeHead;
             if (SnakeState.SnakePoints.Contains(point))
-                return SnakeFieldState.Snake;
-            return SnakeFieldState.Empty;
+                return FieldState.Snake;
+            return FieldState.Empty;
         }
 
-        public SnakeGameRepresentation GetRepresentation()
+        public GameRepresentation GetRepresentation()
         {
-            return new SnakeGameRepresentation(GetFieldRepresentation(), Score, IsStopped);
+            return new GameRepresentation(GetFieldRepresentation(), Score, IsStopped);
         }
 
-        private SnakeFieldState[,] GetFieldRepresentation()
+        private FieldState[,] GetFieldRepresentation()
         {
-            var result = new SnakeFieldState[GameSize.Height, GameSize.Width];
+            var result = new FieldState[GameSize.Height, GameSize.Width];
             for (int i = 0; i < GameSize.Height; i++)
             {
                 for (int j = 0; j < GameSize.Width; j++)

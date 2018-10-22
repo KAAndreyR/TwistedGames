@@ -1,4 +1,6 @@
-﻿namespace TwistedGames.Core.Games
+﻿using TwistedGames.Core.Common;
+
+namespace TwistedGames.Core.Games
 {
     public interface IGame<in TManager>
     {

@@ -4,7 +4,7 @@ using TwistedGames.Core.Games.Tetris;
 
 namespace TwistedGames.Core.TwoTwistedGame
 {
-    public interface ITwoGamesManager : ISnakeGameManager, ITetrisManager, IGameManager<TwoGamesRepresentation>
+    public interface ITwoGamesManager : ISnakeGameManager, ITetrisManager, IGameManager
     {
         
     }

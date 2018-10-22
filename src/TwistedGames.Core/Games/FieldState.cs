@@ -1,6 +1,6 @@
-﻿namespace TwistedGames.Core.Games.Snake
+﻿namespace TwistedGames.Core.Games
 {
-    public enum SnakeFieldState
+    public enum FieldState
     {
         Empty,
         Bonus,

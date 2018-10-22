@@ -5,7 +5,7 @@ using TwistedGames.Core.Games.Snake;
 
 namespace TwistedGames.Core.SingleGames.Snake
 {
-    public class SnakeGameManager : ISnakeGameManager, IGameManager<SnakeGameRepresentation>
+    public class SnakeGameManager : ISnakeGameManager, IGameManager
     {
         public GameSize GameSize { get; }
         private const int InitialSnakeLength = 4;
@@ -25,13 +25,13 @@ namespace TwistedGames.Core.SingleGames.Snake
         public bool AllowTeleport => true;
         public SnakeState SnakeState => SnakeGameState.SnakeState;
 
-        public SnakeFieldState GetFieldState(GamePoint point) => SnakeGameState.GetFieldState(point);
+        public FieldState GetFieldState(GamePoint point) => SnakeGameState.GetFieldState(point);
 
         public void OnWallCollision() => SnakeGameState.Stop();
 
         public void OnBonusCollision() => SnakeGameState.IncreaseScore();
 
-        public SnakeGameRepresentation DoAction(ActionType action)
+        public GameRepresentation DoAction(ActionType action)
         {
             lock (Locker)
             {
@@ -52,7 +52,7 @@ namespace TwistedGames.Core.SingleGames.Snake
             }
         }
 
-        public SnakeGameRepresentation GetActualGameState()
+        public GameRepresentation GetActualGameState()
         {
             lock (Locker)
             {

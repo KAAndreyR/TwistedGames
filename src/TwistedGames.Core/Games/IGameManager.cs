@@ -1,8 +1,10 @@
-﻿namespace TwistedGames.Core.Games
+﻿using TwistedGames.Core.Common;
+
+namespace TwistedGames.Core.Games
 {
-    public interface IGameManager<out TGameRepresentation>
+    public interface IGameManager
     {
-        TGameRepresentation DoAction(ActionType action);
-        TGameRepresentation GetActualGameState();
+        GameRepresentation DoAction(ActionType action);
+        GameRepresentation GetActualGameState();
     }
 }

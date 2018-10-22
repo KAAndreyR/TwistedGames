@@ -6,7 +6,7 @@ namespace TwistedGames.Core.Games.Snake
     {
         SnakeState SnakeState { get; }
         GameSize GameSize { get; }
-        SnakeFieldState GetFieldState(GamePoint point);
+        FieldState GetFieldState(GamePoint point);
         bool AllowTeleport { get; }
         void OnWallCollision();
         void OnBonusCollision();
