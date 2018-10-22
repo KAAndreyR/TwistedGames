@@ -6,12 +6,12 @@
 
 <h2>Single-player Snake</h2>
 
-<div hidden id="GameId">@Model.GameId</div>
+<div hidden id="game-id">@Model.GameId</div>
 
 @Html.AntiForgeryToken()
 
 <div class="row">
-    <div class="col-lg-10 col-md-9 col-sm-12 text-center" id="GameField">
+    <div class="col-lg-10 col-md-9 col-sm-12 text-center">
         <partial name="Shared/GameField/_SnakeField" model="Model.GameRepresentation" />
     </div>
     <div class="col-lg-2 col-md-3 col-sm-12 text-center">
@@ -28,6 +28,11 @@
     </environment>
 }
 @section Scripts {
-    <script src="~/js/snake.js" asp-append-version="true"></script>
+    <environment include="Development">
+        <script src="~/js/snake.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/snake.js" asp-append-version="true"></script>
+    </environment>
 }
 

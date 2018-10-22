@@ -19,7 +19,7 @@ namespace TwistedGames.Pages.SingleGames
         public Guid GameId { get; set; }
         public SnakeGameRepresentation GameRepresentation { get; set; }
 
-        private static SnakeGameManager CreateSnakeGameManager() => new SnakeGameManager(new GameSize(30, 20));
+        private static SnakeGameManager CreateSnakeGameManager() => new SnakeGameManager(new GameSize(20, 15));
 
         public void OnGet()
         {
@@ -28,23 +28,16 @@ namespace TwistedGames.Pages.SingleGames
             GameRepresentation = gameManager.GetActualGameState();
         }
 
-        public PartialViewResult OnPostRefresh(Guid gameId)
+        public JsonResult OnPostRefresh(Guid gameId)
         {
             var gameManager = Games.GetOrAdd(gameId, _ => CreateSnakeGameManager());
-            return new PartialViewResult
-            {
-                ViewName = "Shared/GameField/_SnakeField",
-                ViewData = new ViewDataDictionary<SnakeGameRepresentation>(ViewData, gameManager.GetActualGameState())
-            };
+            return new JsonResult(gameManager.GetActualGameState());
         }
 
-        public PartialViewResult OnPostAction(Guid gameId, ActionType action)
+        public JsonResult OnPostAction(Guid gameId, ActionType action)
         {
             var gameManager = Games.GetOrAdd(gameId, _ => CreateSnakeGameManager());
-            return new PartialViewResult {
-                ViewName = "Shared/GameField/_SnakeField",
-                ViewData = new ViewDataDictionary<SnakeGameRepresentation>(ViewData, gameManager.DoAction(action))
-            };
+            return new JsonResult(gameManager.DoAction(action));
         }
     }
 }

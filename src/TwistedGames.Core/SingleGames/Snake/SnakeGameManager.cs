@@ -10,7 +10,7 @@ namespace TwistedGames.Core.SingleGames.Snake
         public GameSize GameSize { get; }
         private const int InitialSnakeLength = 4;
         private SnakeGameState SnakeGameState { get; set; }
-        private DiscreteCyclesCounter Counter { get; } = new DiscreteCyclesCounter(TimeSpan.FromSeconds(0.1));
+        private DiscreteCyclesCounter Counter { get; } = new DiscreteCyclesCounter(TimeSpan.FromSeconds(0.2));
         private SnakeGame Game { get; } = new SnakeGame();
         private object Locker { get; } = new object();
 
