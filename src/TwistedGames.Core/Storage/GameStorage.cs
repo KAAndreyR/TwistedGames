@@ -6,7 +6,7 @@ using TwistedGames.Core.Games;
 
 namespace TwistedGames.Core.Storage
 {
-    public abstract class GameStorage<TGameManager> : GameStorage where TGameManager : IGameManager
+    public abstract class GameStorage<TGameManager> : GameStorage, IGameStorage<TGameManager> where TGameManager : IGameManager
     {
         private readonly object _clearLocker = new object();
         private DateTime LastClearTime { get; set; } = DateTime.Now;
