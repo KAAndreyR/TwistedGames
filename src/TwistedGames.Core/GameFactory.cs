@@ -8,7 +8,7 @@ namespace TwistedGames.Core
 {
     public class GameFactory
     {
-        public IGame<ITwoGamesManager> CreateGameForTwoTwisted(TwoTwistedGameType gameType)
+        public IGame<ITwoGamesField> CreateGameForTwoTwisted(TwoTwistedGameType gameType)
         {
             switch (gameType)
             {
@@ -21,9 +21,9 @@ namespace TwistedGames.Core
             }
         }
 
-        public static IGame<ITetrisManager> CreateTetrisGame()
+        public static IGame<ITetrisState> CreateTetrisGame()
         {
-            throw new NotImplementedException();
+            return new TetrisGame();
         }
 
         public static SnakeGame CreateSnakeGame()

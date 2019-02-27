@@ -7,7 +7,7 @@ var height = 0;
 var width = 0;
 var cellValues;
 var cellElements;
-var classes = ["empty-cell", "bonus-cell", "wall-cell", "snake-cell", "snake-head-cell"];
+var cellClasses = ["empty-cell", "bonus-cell", "wall-cell", "snake-cell", "snake-head-cell", "tetris-figure-cell"];
 
 function createGameField(state) {
     height = state.length;
@@ -37,9 +37,9 @@ function renderGameField(state) {
         for (var j = 0; j < width; j++) {
             if (cellValues == null || cellValues[i][j] !== state.field[i][j]) {
                 if (cellValues != null) {
-                    cellElements[i][j].classList.remove(classes[cellValues[i][j]]);
+                    cellElements[i][j].classList.remove(cellClasses[cellValues[i][j]]);
                 }
-                cellElements[i][j].classList.add(classes[state.field[i][j]]);
+                cellElements[i][j].classList.add(cellClasses[state.field[i][j]]);
             }
         }
     }

@@ -2,9 +2,9 @@
 
 namespace TwistedGames.Core.Games
 {
-    public interface IGame<in TManager>
+    public interface IGame<in TField>
     {
-        void DoAction(TManager manager, ActionType action);
-        void OnTick(TManager manager);
+        void DoAction(TField field, ActionType action);
+        void OnTick(TField field);
     }
 }

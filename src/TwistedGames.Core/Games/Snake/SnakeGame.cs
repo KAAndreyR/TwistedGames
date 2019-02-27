@@ -3,67 +3,62 @@ using TwistedGames.Core.Common;
 
 namespace TwistedGames.Core.Games.Snake
 {
-    public class SnakeGame : IGame<ISnakeGameManager>
+    public class SnakeGame : IGame<ISnakeGameState>
     {
-        public void DoAction(ISnakeGameManager manager, ActionType action)
+        public void DoAction(ISnakeGameState field, ActionType action)
         {
-            var snake = manager.SnakeState;
+            var snake = field.SnakeState;
             switch (action)
             {
                 case ActionType.Action:
-                    snake.Revert(manager.GameSize);
+                    snake.Revert(field.GameSize);
                     break;
                 case ActionType.Up:
-                    snake.SetDirection(Direction.Up, manager.GameSize);
+                    snake.SetDirection(Direction.Up, field.GameSize);
                     break;
                 case ActionType.Down:
-                    snake.SetDirection(Direction.Down, manager.GameSize);
+                    snake.SetDirection(Direction.Down, field.GameSize);
                     break;
                 case ActionType.Right:
-                    snake.SetDirection(Direction.Right, manager.GameSize);
+                    snake.SetDirection(Direction.Right, field.GameSize);
                     break;
                 case ActionType.Left:
-                    snake.SetDirection(Direction.Left, manager.GameSize);
+                    snake.SetDirection(Direction.Left, field.GameSize);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(action), action, null);
             }
         }
 
-        public void OnTick(ISnakeGameManager manager)
+        public void OnTick(ISnakeGameState field)
         {
-            var snake = manager.SnakeState;
+            var snake = field.SnakeState;
             var nextHeadPosition = snake.GetNextHeadPosition();
-            var gameSize = manager.GameSize;
-            if (!manager.AllowTeleport && !CheckBorders(nextHeadPosition, gameSize))
+            var gameSize = field.GameSize;
+            if (!field.AllowTeleport && !nextHeadPosition.IsAccommodated(gameSize))
             {
-                manager.OnWallCollision();
+                field.OnWallCollision();
                 return;
             }
             nextHeadPosition = nextHeadPosition.CorrectPoint(gameSize);
-            var fieldState = manager.GetFieldState(nextHeadPosition);
+            var fieldState = field.GetFieldState(nextHeadPosition);
 
             switch (fieldState)
             {
                 case FieldState.Wall:
                 case FieldState.Snake:
-                    manager.OnWallCollision();
+                    field.OnWallCollision();
                     return;
                 case FieldState.Empty:
                     snake.Move(nextHeadPosition, false);
                     break;
                 case FieldState.Bonus:
                     snake.Move(nextHeadPosition, true);
-                    manager.OnBonusCollision();
+                    field.OnBonusCollision();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(fieldState), fieldState, "Unexpected fieldState");
             }
-        }
-
-        public bool CheckBorders(GamePoint point, GameSize gameSize)
-        {
-            return point.X >= 0 && point.Y >= 0 && point.X < gameSize.Width && point.Y < gameSize.Height;
         }
     }
 }

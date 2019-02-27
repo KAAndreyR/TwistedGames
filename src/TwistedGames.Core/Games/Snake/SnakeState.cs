@@ -56,7 +56,6 @@ namespace TwistedGames.Core.Games.Snake
         public GamePoint GetNextHeadPosition() => GetNextHeadPosition(Direction);
         public GamePoint GetNextHeadPosition(Direction direction) => SnakePoints[0].AddDirection(direction);
 
-
         public void Move(GamePoint nextHeadPosition, bool hasBonus)
         {
             if (!CanSnakeGrow || !hasBonus)

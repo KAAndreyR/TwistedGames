@@ -14,6 +14,10 @@
     background-color: darkgreen;
 }
 
-.empty-cell{
+.empty-cell {
     background-color: white;
+}
+
+.tetris-figure-cell {
+    background-color: purple;
 }

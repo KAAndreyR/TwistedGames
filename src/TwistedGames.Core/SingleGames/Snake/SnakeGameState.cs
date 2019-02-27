@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TwistedGames.Core.Common;
 using TwistedGames.Core.Games;
@@ -7,19 +6,14 @@ using TwistedGames.Core.Games.Snake;
 
 namespace TwistedGames.Core.SingleGames.Snake
 {
-    public class SnakeGameState
+    public class SnakeGameState : GameState, ISnakeGameState
     {
-        private Random Random { get; } = new Random();
-        public GameSize GameSize { get; }
         public SnakeState SnakeState { get; }
         public GamePoint Bonus { get; set; }
         private List<BitArray> Walls { get; }
-        public bool IsStopped { get; private set; }
-        public int Score { get; private set; }
 
-        public SnakeGameState(GameSize gameSize, int initialSnakeLength, bool canSnakeGrow)
+        public SnakeGameState(GameSize gameSize, int initialSnakeLength, bool canSnakeGrow) : base(gameSize)
         {
-            GameSize = gameSize;
             SnakeState = new SnakeState(initialSnakeLength, canSnakeGrow);
             Walls = new List<BitArray>(gameSize.Height);
             for (int i = 0; i < gameSize.Height; i++)
@@ -40,18 +34,13 @@ namespace TwistedGames.Core.SingleGames.Snake
             return newBonus;
         }
 
-        public void Stop()
+        public void OnBonusCollision()
         {
-            IsStopped = true;
-        }
-
-        public void IncreaseScore()
-        {
-            Score++;
+            IncreaseScore();
             Bonus = GenerateBonus();
         }
 
-        public FieldState GetFieldState(GamePoint point)
+        public override FieldState GetFieldState(GamePoint point)
         {
             if (point.Equals(Bonus))
                 return FieldState.Bonus;
@@ -64,23 +53,7 @@ namespace TwistedGames.Core.SingleGames.Snake
             return FieldState.Empty;
         }
 
-        public GameRepresentation GetRepresentation()
-        {
-            return new GameRepresentation(GetFieldRepresentation(), Score, IsStopped);
-        }
-
-        private FieldState[,] GetFieldRepresentation()
-        {
-            var result = new FieldState[GameSize.Height, GameSize.Width];
-            for (int i = 0; i < GameSize.Height; i++)
-            {
-                for (int j = 0; j < GameSize.Width; j++)
-                {
-                    result[i, j] = GetFieldState(new GamePoint(j, i));
-                }
-            }
-
-            return result;
-        }
+        public void OnWallCollision() => Stop();
+        public bool AllowTeleport => true;
     }
 }

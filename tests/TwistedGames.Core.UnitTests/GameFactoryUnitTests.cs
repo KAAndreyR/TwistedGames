@@ -1,6 +1,6 @@
 using System;
-using TwistedGames.Core.Games;
 using TwistedGames.Core.Games.Snake;
+using TwistedGames.Core.Games.Tetris;
 using TwistedGames.Core.TwoTwistedGame;
 using Xunit;
 
@@ -19,7 +19,7 @@ namespace TwistedGames.Core.UnitTests
         [Fact]
         public void CreateTetrisGame()
         {
-            Assert.Throws<NotImplementedException>(() => GameFactory.CreateTetrisGame());
+            Assert.IsType<TetrisGame>(GameFactory.CreateTetrisGame());
         }
 
 
@@ -33,7 +33,7 @@ namespace TwistedGames.Core.UnitTests
         [Fact]
         public void CreateGameForTwoTwistedGames_TetrisGameType()
         {
-            Assert.Throws<NotImplementedException>(() => GameFactory.CreateGameForTwoTwisted(TwoTwistedGameType.Tetris));
+            Assert.IsType<TetrisGame>(GameFactory.CreateGameForTwoTwisted(TwoTwistedGameType.Tetris));
         }
 
         [Fact]

@@ -7,5 +7,6 @@
         Wall,
         Snake,
         SnakeHead,
+        TetrisFigure
     }
 }

@@ -47,8 +47,8 @@ namespace TwistedGames.Core.Common
             var yDiff = Math.Min(upDiff, downDiff);
             if (xDiff > yDiff)
             {
-                return rightDiff < leftDiff 
-                    ? Direction.Right 
+                return rightDiff < leftDiff
+                    ? Direction.Right
                     : Direction.Left;
             }
             return upDiff < downDiff
@@ -67,5 +67,10 @@ namespace TwistedGames.Core.Common
             if (point.Y >= gameSize.Height) point = new GamePoint(point.X, point.Y % gameSize.Height);
             return point;
         }
+
+        public GamePoint Shift(int deltaX, int deltaY) => new GamePoint(X + deltaX, Y + deltaY);
+
+        public bool IsAccommodated(GameSize gameSize, bool allowTopOverflow = false)
+            => X >= 0 && Y >= 0 && X < gameSize.Width && (allowTopOverflow || Y < gameSize.Height);
     }
 }
